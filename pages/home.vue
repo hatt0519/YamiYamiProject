@@ -64,23 +64,6 @@
         bottom: -180px;
         left: 3400px;
     }
-    /* .building .girl {
-        height: 40%;
-        position: absolute;
-        bottom: 25%;
-    }
-    .building .vending_machine {
-        height: 300px;
-        position: absolute;
-        bottom: 25%;
-        left: 100px;
-    }
-    .building .signboard {
-        height: 300px;
-        position: absolute;
-        bottom: 25%;
-        right: 100px;
-    } */
 </style>
 <script>
 export default {
