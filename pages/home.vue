@@ -27,10 +27,10 @@
     .building {
         width: 1480px;
         height: 900px;
-        overflow: scroll;
+        overflow-x: scroll;
+        overflow-y: hidden;
         margin:0 auto;
         position: relative;
-        justify-content: center;
     }
     .building .background {
         width: 5509px;
