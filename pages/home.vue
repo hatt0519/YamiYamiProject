@@ -71,18 +71,13 @@ export default {
     //     name: "fade_in"
     // }
     mounted() {
-        const girl = this.$refs.girl
-        girl.scrollIntoView(
-            {
-                behavior: "instant",
-                block: "center",
-                inline: "center"
-            }
-        )
+        this.focusGirl()
         window.addEventListener("scroll", this.onScroll)
+        window.addEventListener("resize", this.onResizeWindow)
     },
     destroyed() {
         window.removeEventListener("scroll", this.onScroll)
+        window.removeEventListener("resize", this.onResizeWindow)
     },
     methods: {
         girl: function(event) {
@@ -100,10 +95,23 @@ export default {
         background: function(event) {
             alert("背景だよ")
         },
+        focusGirl: function() {
+            const girl = this.$refs.girl
+            girl.scrollIntoView(
+                {
+                    behavior: "instant",
+                    block: "center",
+                    inline: "center"
+                }
+            )
+        },
         onScroll: function() {
             const background = this.$refs.background
             const station = this.$refs.station
             console.log("aaa")
+        },
+        onResizeWindow() {
+            this.focusGirl()
         }
     },
 }
