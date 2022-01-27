@@ -5,7 +5,7 @@
 
 <style>
     .enter_background {
-        background-image: url("~@/assets/enter_home.webp");
+        background-image: url("/enter_home.webp");
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;

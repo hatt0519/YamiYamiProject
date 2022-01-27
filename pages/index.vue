@@ -41,6 +41,37 @@
 export default {
   transition: {
     name: "home",
+  },
+  head () {
+      return {
+          link: [
+              {
+              rel: 'preload',
+              href: '/background.webp',
+              as: 'image'
+              },
+              {
+              rel: 'preload',
+              href: '/girl.webp',
+              as: 'image'
+              },
+              {
+              rel: 'preload',
+              href: '/signboard.webp',
+              as: 'image'
+              },
+              {
+              rel: 'preload',
+              href: '/station.webp',
+              as: 'image'
+              },
+              {
+              rel: 'preload',
+              href: '/vending_machine.webp',
+              as: 'image'
+              }
+          ]
+      }
   }
 }
 </script>
