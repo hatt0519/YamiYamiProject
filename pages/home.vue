@@ -44,22 +44,22 @@
         position: absolute;
     }
     .building .girl {
-        width: auto;
-        height: auto;
+        width: 187px;
+        height: 467px;
         position: absolute;
         bottom: -180px;
         left: 2800px;
     }
     .building .vending_machine {
-        width: auto;
-        height: auto;
+        width: 347px;
+        height: 529px;
         position: absolute;
         bottom: -180px;
         left: 2000px;
     }
     .building .signboard {
-        width: auto;
-        height: auto;
+        width: 462px;
+        height: 522px;
         position: absolute;
         bottom: -180px;
         left: 3400px;
