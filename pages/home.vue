@@ -1,10 +1,10 @@
 <template>
     <div class="building">
-        <img src="@/assets/background.png" class="background" ref="background" v-on:click="background"/>
-        <img src="@/assets/station.png" class="station" ref="station" v-on:click="station"/>
-        <img src="@/assets/girl.png" class="girl" ref="girl" v-on:click="girl"/>
-        <img src="@/assets/vending_machine.png" class="vending_machine" v-on:click="vendor"/>
-        <img src="@/assets/signboard.png" class="signboard" v-on:click="signboard"/>
+        <img src="@/assets/background.webp" class="background" ref="background" v-on:click="background"/>
+        <img src="@/assets/station.webp" class="station" ref="station" v-on:click="station"/>
+        <img src="@/assets/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
+        <img src="@/assets/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
+        <img src="@/assets/signboard.webp" class="signboard" v-on:click="signboard"/>
     </div>
 </template>
 
