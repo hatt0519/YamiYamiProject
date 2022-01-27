@@ -1,6 +1,6 @@
 <template>
     <div class="building">
-        <img src="@/assets/background.webp" class="background" ref="background" v-on:click="background"/>
+        <img src="/background.webp" class="background" ref="background" v-on:click="background"/>
         <img src="@/assets/station.webp" class="station" ref="station" v-on:click="station"/>
         <img src="@/assets/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
         <img src="@/assets/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
@@ -114,5 +114,16 @@ export default {
             this.focusGirl()
         }
     },
+    head () {
+        return {
+            link: [
+                {
+                rel: 'preload',
+                href: '/background.webp',
+                as: 'image'
+                }
+            ]
+        }
+    }
 }
 </script>
