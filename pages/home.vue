@@ -5,6 +5,9 @@
         <img src="/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
         <img src="/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
         <img src="/signboard.webp" class="signboard" v-on:click="signboard"/>
+        <div class="character_container">
+            <img src="/walk_sample.gif" ref="walk" class="walk_character" v-on:click="walkCharacter"/>
+        </div>
     </div>
 </template>
 
@@ -64,6 +67,25 @@
         bottom: -180px;
         left: 3400px;
     }
+    .building .walk_character {
+        width: 300px;
+        height: auto;
+        position: absolute;
+        bottom: -180px;
+        left: calc(5509px - 300px);
+        animation: walk normal linear 20s infinite;
+    }
+    @keyframes walk {
+        0% {
+            transform: translateX(0px);
+        }
+        100% {
+            transform: translateX(-5509px);
+        }
+    }
+    .building .character_container:hover .walk_character{
+        animation-play-state: paused;
+    }
 </style>
 <script>
 export default {
@@ -94,6 +116,8 @@ export default {
         },
         background: function(event) {
             alert("背景だよ")
+        },
+        walkCharacter : function(event) {
         },
         focusGirl: function() {
             const girl = this.$refs.girl
