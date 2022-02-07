@@ -1,6 +1,6 @@
 <template>
-    <div class="building">
-        <img src="/background.webp" class="background" ref="background" v-on:click="background"/>
+    <div class="building" ref="building">
+        <img src="/background.webp" class="background" ref="background" v-on:click="background" v-bind:style="backgroundStyle"/>
         <img src="/station.webp" class="station" ref="station" v-on:click="station"/>
         <img src="/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
         <img src="/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
@@ -92,13 +92,21 @@ export default {
     // transition: {
     //     name: "fade_in"
     // }
+    data: () => ({
+        backgroundStyle: {
+            transform: "translateX(0px)"
+        },
+        backgroundScrollState: {
+            lastScrollX: 0,
+            x: 0
+        },
+    }),
     mounted() {
         this.focusGirl()
-        window.addEventListener("scroll", this.onScroll)
+        this.$refs.building.onscroll = this.onScroll
         window.addEventListener("resize", this.onResizeWindow)
     },
     destroyed() {
-        window.removeEventListener("scroll", this.onScroll)
         window.removeEventListener("resize", this.onResizeWindow)
     },
     methods: {
@@ -130,9 +138,19 @@ export default {
             )
         },
         onScroll: function() {
-            const background = this.$refs.background
-            const station = this.$refs.station
-            console.log("aaa")
+            const verocity = 0.3
+            const scrollX = window.pageXOffset || this.$el.scrollLeft
+            console.log(scrollX)
+            let x = 0
+            if(this.$data.backgroundScrollState.lastScrollX > scrollX) {
+                x = this.$data.backgroundScrollState.x + verocity
+            } else {
+                x = this.$data.backgroundScrollState.x - verocity
+            }
+            this.$data.backgroundStyle.transform = `translateX(${x}px)`
+            this.$data.backgroundScrollState.lastScrollX = scrollX
+            this.$data.backgroundScrollState.x = x
+            console.log(this.$data.backgroundScrollState.lastScrollX)
         },
         onResizeWindow() {
             this.focusGirl()
