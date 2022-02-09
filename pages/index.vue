@@ -47,11 +47,6 @@ export default {
           link: [
               {
                 rel: 'preload',
-                href: '/background.webp',
-                as: 'image'
-              },
-              {
-                rel: 'preload',
                 href: '/girl.webp',
                 as: 'image'
               },

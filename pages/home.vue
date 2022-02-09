@@ -1,6 +1,7 @@
 <template>
     <div class="building" ref="building">
-        <img src="/background.webp" class="background" ref="background" v-on:click="background" v-bind:style="backgroundStyle"/>
+        <img src="/background_rear.webp" class="background" ref="background_rear" v-on:click="background" v-bind:style="backgroundRearStyle"/>
+        <img src="/background_front.webp" class="background" ref="background_front" v-on:click="background" v-bind:style="backgroundFrontStyle" />
         <img src="/station.webp" class="station" ref="station" v-on:click="station"/>
         <img src="/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
         <img src="/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
@@ -39,7 +40,6 @@
         width: 5509px;
         height: 1440px;
         position: absolute;
-        background: linear-gradient(white, black);
     }
     .building .station {
         width: 5509px;
@@ -93,13 +93,20 @@ export default {
     //     name: "fade_in"
     // }
     data: () => ({
-        backgroundStyle: {
+        backgroundFrontStyle: {
             transform: "translateX(0px)"
         },
-        backgroundScrollState: {
+        backgroundRearStyle: {
+            transform: "translateX(0px)"
+        },
+        backgroundFrontScrollState: {
             lastScrollX: 0,
             x: 0
         },
+        backgroundRearScrollState: {
+            lastScrollX: 0,
+            x: 0
+        }
     }),
     mounted() {
         this.focusGirl()
@@ -138,19 +145,29 @@ export default {
             )
         },
         onScroll: function() {
-            const verocity = 0.3
-            const scrollX = window.pageXOffset || this.$el.scrollLeft
-            console.log(scrollX)
-            let x = 0
-            if(this.$data.backgroundScrollState.lastScrollX > scrollX) {
-                x = this.$data.backgroundScrollState.x + verocity
+            const frontVerocity = 0.3
+            const frontScrollX = window.pageXOffset || this.$el.scrollLeft
+            let frontX = 0
+            if(this.$data.backgroundFrontScrollState.lastScrollX > frontScrollX) {
+                frontX = this.$data.backgroundFrontScrollState.x + frontVerocity
             } else {
-                x = this.$data.backgroundScrollState.x - verocity
+                frontX = this.$data.backgroundFrontScrollState.x - frontVerocity
             }
-            this.$data.backgroundStyle.transform = `translateX(${x}px)`
-            this.$data.backgroundScrollState.lastScrollX = scrollX
-            this.$data.backgroundScrollState.x = x
-            console.log(this.$data.backgroundScrollState.lastScrollX)
+            this.$data.backgroundFrontStyle.transform = `translateX(${frontX}px)`
+            this.$data.backgroundFrontScrollState.lastScrollX = frontScrollX
+            this.$data.backgroundFrontScrollState.x = frontX
+
+            const rearVerocity = 0.2
+            const rearScrollX = window.pageXOffset || this.$el.scrollLeft
+            let rearX = 0
+            if(this.$data.backgroundRearScrollState.lastScrollX > rearScrollX) {
+                rearX = this.$data.backgroundRearScrollState.x + rearVerocity
+            } else {
+                rearX = this.$data.backgroundRearScrollState.x - rearVerocity
+            }
+            this.$data.backgroundRearStyle.transform = `translateX(${rearX}px)`
+            this.$data.backgroundRearScrollState.lastScrollX = rearScrollX
+            this.$data.backgroundRearScrollState.x = rearX
         },
         onResizeWindow() {
             this.focusGirl()
@@ -161,7 +178,12 @@ export default {
             link: [
                 {
                 rel: 'preload',
-                href: '/background.webp',
+                href: '/background_front.webp',
+                as: 'image'
+                },
+                {
+                rel: 'preload',
+                href: '/background_rear.webp',
                 as: 'image'
                 }
             ]
