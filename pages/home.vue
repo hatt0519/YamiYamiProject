@@ -1,11 +1,11 @@
 <template>
     <div class="building" ref="building">
-        <img src="/background_rear.webp" class="background" ref="background_rear" v-on:click="background" v-bind:style="backgroundRearStyle"/>
-        <img src="/background_front.webp" class="background" ref="background_front" v-on:click="background" v-bind:style="backgroundFrontStyle" />
-        <img src="/station.webp" class="station" ref="station" v-on:click="station"/>
-        <img src="/girl.webp" class="girl" ref="girl" v-on:click="girl"/>
-        <img src="/vending_machine.webp" class="vending_machine" v-on:click="vendor"/>
-        <img src="/signboard.webp" class="signboard" v-on:click="signboard"/>
+        <img src="/background_rear.webp" class="background all" ref="background_rear" v-on:click="background" v-bind:style="backgroundRearStyle"/>
+        <img src="/background_front.webp" class="background all" ref="background_front" v-on:click="background" v-bind:style="backgroundFrontStyle" />
+        <img src="/station.webp" class="station all" ref="station" v-on:click="station"/>
+        <img src="/girl.webp" class="girl all" ref="girl" v-on:click="girl"/>
+        <img src="/vending_machine.webp" class="vending_machine all" v-on:click="vendor"/>
+        <img src="/signboard.webp" class="signboard all" v-on:click="signboard"/>
         <div class="character_container">
             <img src="/walk_sample.gif" ref="walk" class="walk_character" v-on:click="walkCharacter"/>
         </div>
@@ -13,28 +13,36 @@
 </template>
 
 <style scoped>
-    /* .fade_in-enter {
-        animation-delay: 3.0s;
-    } */
-    /* .fade_in-enter-active {
+    .tv-enter-active {
         animation-timing-function:ease-in;
-        animation: enter 3.0s;
-    } */
-    @keyframes enter {
+        animation: station-in 4.0s;
+    }
+    @keyframes station-in {
         0% {
-        opacity: 0;
+            opacity: 0;
+            transform: scale(0.1);
+        }
+        50% {
+            opacity: 0;
+        }
+        80% {
+            opacity: 0.2;
+        }
+        90% {
+            opacity: 0.4;
         }
         100% {
-        opacity: 100;
+            opacity: 1;
+            transform: scale(1);
         }
     }
     .building {
-        width: 1480px;
+        width: 100%;
         height: 900px;
         overflow-x: scroll;
         overflow-y: hidden;
         margin:0 auto;
-        position: relative;
+        position: absolute;
     }
     .building .background {
         width: 5509px;
@@ -89,9 +97,6 @@
 </style>
 <script>
 export default {
-    // transition: {
-    //     name: "fade_in"
-    // }
     data: () => ({
         backgroundFrontStyle: {
             transform: "translateX(0px)"
@@ -145,7 +150,7 @@ export default {
             )
         },
         onScroll: function() {
-            const frontVerocity = 0.3
+            const frontVerocity = 0.2
             const frontScrollX = window.pageXOffset || this.$el.scrollLeft
             let frontX = 0
             if(this.$data.backgroundFrontScrollState.lastScrollX > frontScrollX) {
@@ -157,7 +162,7 @@ export default {
             this.$data.backgroundFrontScrollState.lastScrollX = frontScrollX
             this.$data.backgroundFrontScrollState.x = frontX
 
-            const rearVerocity = 0.2
+            const rearVerocity = 0.1
             const rearScrollX = window.pageXOffset || this.$el.scrollLeft
             let rearX = 0
             if(this.$data.backgroundRearScrollState.lastScrollX > rearScrollX) {

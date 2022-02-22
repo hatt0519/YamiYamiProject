@@ -1,31 +1,48 @@
 <template>
-  <v-container>
-    <nuxt-link
-        to="/home">
-        <EnterHome />
+  <v-app class="parent">
+    <nuxt-link to="/home" class="child">
+      <div class="enter_background"/>
     </nuxt-link>
-  </v-container>
+  </v-app>
 </template>
 
 <style scoped>
-  .home-leave-active {
+  .parent {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+  .enter_background {
+      background-image: url("/enter_home.webp");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      width: 100vw;
+  }
+  .child {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+  }
+  .tv-leave-active {
     animation-timing-function:ease-out;
     animation: home-in 3.0s;
     animation-delay: 1.0s;
-    transform-origin: 50% 30%;
+    transform-origin: center 40%;
   }
-  .home-enter-active {
+  .tv-enter-active {
     animation-timing-function:ease-out;
     animation: home-out 3.0s;
   }
   @keyframes home-in {
     0% {
       transform: scale(1);
-      opacity: 100;
+      opacity: 1;
     }
     100% {
-      transform: scale(1.8);
-      opacity: 10;
+      transform: scale(2.4);
+      opacity: 0.5;
     }
   }
   @keyframes home-out {
@@ -33,14 +50,15 @@
       opacity: 0;
     }
     100% {
-      opacity: 100;
+      opacity: 1;
     }
   }
 </style>
 <script>
 export default {
   transition: {
-    name: "home",
+    name: "tv",
+    mode: ""
   },
   head () {
       return {
