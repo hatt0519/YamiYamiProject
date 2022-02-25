@@ -54,7 +54,7 @@
     }
   }
 </style>
-<script>
+<script lang="ts">
 export default {
   transition: {
     name: "tv",

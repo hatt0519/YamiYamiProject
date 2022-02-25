@@ -95,8 +95,16 @@
         animation-play-state: paused;
     }
 </style>
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+interface Style {
+    transform: string
+}
+interface ScrollState {
+    lastScrollX: number
+    x: number
+}
+export default Vue.extend({
     data: () => ({
         backgroundFrontStyle: {
             transform: "translateX(0px)"
@@ -114,36 +122,36 @@ export default {
         }
     }),
     mounted() {
-        this.focusGirl()
-        this.$refs.building.onscroll = this.onScroll
+        this.focusGirl();
+        (this.$refs.building as Element).addEventListener("scroll", this.onScroll)
         window.addEventListener("resize", this.onResizeWindow)
     },
     destroyed() {
+        (this.$refs.building as Element).removeEventListener("scroll", this.onScroll)
         window.removeEventListener("resize", this.onResizeWindow)
     },
     methods: {
-        girl: function(event) {
+        girl: function(event: Event) {
             alert("女の子だよ")
         },
-        vendor: function(event) {
+        vendor: function(event: Event) {
             alert("自販機だよ")
         },
-        signboard: function(event) {
+        signboard: function(event: Event) {
             alert("看板だよ")
         },
-        station: function(event) {
+        station: function(event: Event) {
             alert("駅だよ")
         },
-        background: function(event) {
+        background: function(event: Event) {
             alert("背景だよ")
         },
-        walkCharacter : function(event) {
+        walkCharacter : function(event: Event) {
         },
         focusGirl: function() {
-            const girl = this.$refs.girl
+            const girl = this.$refs.girl as Element
             girl.scrollIntoView(
                 {
-                    behavior: "instant",
                     block: "center",
                     inline: "center"
                 }
@@ -194,5 +202,5 @@ export default {
             ]
         }
     }
-}
+})
 </script>
